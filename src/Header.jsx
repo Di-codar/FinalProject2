@@ -8,7 +8,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
-          <ShoppingCart className="text-purple-600" size={28} />
+        <img src="Logo.jpg" alt="" />
           <h1 className="text-2xl font-bold text-gray-800">
             <span className="text-purple-600">OKWU</span>TECH
           </h1>
