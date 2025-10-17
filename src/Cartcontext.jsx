@@ -1,84 +1,37 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 
-
-const CartContext = createContext();
-
-
-export const useCart = () => useContext(CartContext);
+const Cartcontext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(() => {
-    
-    const storedCart = localStorage.getItem("okwutech_cart");
-    return storedCart ? JSON.parse(storedCart) : [];
-  });
+  const [cartItems, setCartItems] = useState([]);
 
-
-  useEffect(() => {
-    localStorage.setItem("okwutech_cart", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  
-  const addToCart = (item) => {
-    setCartItems((prev) => {
-      const existing = prev.find((cartItem) => cartItem.id === item.id);
+  const addToCart = (product) => {
+    setCartItems((prevItems) => {
+      const existing = prevItems.find((item) => item.id === product.id);
       if (existing) {
-        
-        return prev.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
+        return prevItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
         );
-      } else {
-        
-        return [...prev, { ...item, quantity: 1 }];
       }
+      return [...prevItems, { ...product, quantity: 1 }];
     });
   };
 
   const removeFromCart = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  
-  const decreaseQuantity = (id) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
-  };
-
-  
   const clearCart = () => setCartItems([]);
 
-  
-  const totalQuantity = cartItems.reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
-
-  
-  const totalPrice = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
-
   return (
-    <CartContext.Provider
-      value={{
-        cartItems,
-        addToCart,
-        removeFromCart,
-        decreaseQuantity,
-        clearCart,
-        totalQuantity,
-        totalPrice,
-      }}
+    <Cartcontext.Provider
+      value={{ cartItems, addToCart, removeFromCart, clearCart }}
     >
       {children}
-    </CartContext.Provider>
+    </Cartcontext.Provider>
   );
 };
+
+export const useCart = () => useContext(Cartcontext);

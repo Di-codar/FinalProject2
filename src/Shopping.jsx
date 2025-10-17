@@ -1,28 +1,25 @@
 import React, { useState, useEffect } from "react";
+import { useCart } from "./Cartcontext";
 
 const categories = ["All", "Electronics", "Fashion", "Shoes", "Accessories"];
 
 const Shopping = () => {
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [priceRange, setPriceRange] = useState([0, 30000]);
+  const { addToCart } = useCart(); // ✅ access cart context
 
-  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await fetch("https://fakestoreapi.com/products");
         if (!res.ok) throw new Error("Failed to fetch products");
-
         const data = await res.json();
-        console.log("Fetched products:", data); 
-
-        setProducts(data); 
+        setProducts(data);
       } catch (err) {
-        console.error(err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -32,15 +29,13 @@ const Shopping = () => {
     fetchProducts();
   }, []);
 
-  
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.title
       ?.toLowerCase()
       .includes(search.toLowerCase());
     const matchesCategory =
       selectedCategory === "All" ||
-      product.category === selectedCategory ||
-      product.type === selectedCategory;
+      product.category === selectedCategory;
     const matchesPrice =
       product.price >= priceRange[0] && product.price <= priceRange[1];
     return matchesSearch && matchesCategory && matchesPrice;
@@ -53,11 +48,10 @@ const Shopping = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-        
+        {/* Sidebar filters */}
         <aside className="bg-white p-6 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-4 text-gray-800">Filters</h2>
 
-          
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Search Products
@@ -71,7 +65,6 @@ const Shopping = () => {
             />
           </div>
 
-          
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Category
@@ -105,7 +98,7 @@ const Shopping = () => {
           </div>
         </aside>
 
-        
+        {/* Main content */}
         <main className="md:col-span-3">
           {loading ? (
             <p className="text-gray-600 text-center text-lg mt-10">
@@ -139,7 +132,10 @@ const Shopping = () => {
                     <p className="text-blue-600 font-semibold mb-3">
                       ₦{product.price?.toLocaleString() || "N/A"}
                     </p>
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md">
+                    <button
+                      onClick={() => addToCart(product)} // ✅ add to cart here
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md"
+                    >
                       Add to Cart
                     </button>
                   </div>
