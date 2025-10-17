@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
        
-      {/* Hero Section */}
+      
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-16 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
         <div className="md:w-1/2 space-y-6">
           <motion.h1
@@ -42,7 +42,7 @@ function App() {
       </section>
     
 
-      {/* Categories Section */}
+      
       <section className="py-16 px-6 md:px-16">
         <h2 className="text-3xl font-bold text-center mb-10">
           Shop by Category
@@ -70,7 +70,7 @@ function App() {
         </div>
       </section>
 
-      {/* Featured Products */}
+      
       <section className="py-16 px-6 md:px-16 bg-gray-100">
         <h2 className="text-3xl font-bold text-center mb-10">
           Featured Products
@@ -110,7 +110,7 @@ function App() {
         </div>
       </section>
 
-      {/* Testimonials */}
+    
       <section className="py-16 px-6 md:px-16 text-center">
         <h2 className="text-3xl font-bold mb-10">What Our Customers Say</h2>
         <div className="grid md:grid-cols-3 gap-8">
@@ -140,7 +140,7 @@ function App() {
         </div>
       </section>
 
-      {/* Newsletter Signup */}
+      
       <section className="bg-indigo-600 py-12 text-white text-center px-6 md:px-16">
         <Mail size={40} className="mx-auto mb-4" />
         <h2 className="text-2xl font-bold mb-4">
@@ -158,7 +158,7 @@ function App() {
         </div>
       </section>
 
-      {/* Footer */}
+      
       <footer className="bg-gray-900 text-gray-300 py-6 text-center text-sm">
         © {new Date().getFullYear()} ShopEase. All rights reserved.
       </footer>

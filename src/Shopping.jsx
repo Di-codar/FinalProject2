@@ -3,14 +3,14 @@ import React, { useState, useEffect } from "react";
 const categories = ["All", "Electronics", "Fashion", "Shoes", "Accessories"];
 
 const Shopping = () => {
-  const [products, setProducts] = useState([]); // products from backend
+  const [products, setProducts] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [priceRange, setPriceRange] = useState([0, 30000]);
 
-  // ✅ Proper API Fetch
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -18,9 +18,9 @@ const Shopping = () => {
         if (!res.ok) throw new Error("Failed to fetch products");
 
         const data = await res.json();
-        console.log("Fetched products:", data); // just for debugging
+        console.log("Fetched products:", data); 
 
-        setProducts(data); // fakestoreapi returns an array
+        setProducts(data); 
       } catch (err) {
         console.error(err);
         setError(err.message);
@@ -32,7 +32,7 @@ const Shopping = () => {
     fetchProducts();
   }, []);
 
-  // 🔹 Filter products dynamically
+  
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.title
       ?.toLowerCase()
@@ -53,11 +53,11 @@ const Shopping = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
-        {/* Sidebar Filters */}
+        
         <aside className="bg-white p-6 rounded-xl shadow-md">
           <h2 className="text-xl font-semibold mb-4 text-gray-800">Filters</h2>
 
-          {/* Search Bar */}
+          
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Search Products
@@ -71,7 +71,7 @@ const Shopping = () => {
             />
           </div>
 
-          {/* Category Filter */}
+          
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Category
@@ -89,7 +89,6 @@ const Shopping = () => {
             </select>
           </div>
 
-          {/* Price Range */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Price Range (₦{priceRange[0]} - ₦{priceRange[1]})
@@ -106,7 +105,7 @@ const Shopping = () => {
           </div>
         </aside>
 
-        {/* Product Display */}
+        
         <main className="md:col-span-3">
           {loading ? (
             <p className="text-gray-600 text-center text-lg mt-10">

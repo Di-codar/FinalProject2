@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300 py-10 ">
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-        {/* Column 1 */}
+    
         <div>
           <h2 className="text-white text-xl font-semibold mb-4">OKWUTECH</h2>
           <p className="text-sm leading-6">
@@ -13,7 +13,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Column 2 */}
+    
         <div>
           <h3 className="text-white font-semibold mb-4">Customer Service</h3>
           <ul className="space-y-2 text-sm">
@@ -24,7 +24,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 3 */}
+        
         <div>
           <h3 className="text-white font-semibold mb-4">About Us</h3>
           <ul className="space-y-2 text-sm">
@@ -35,7 +35,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Column 4 */}
+        
         <div>
           <h3 className="text-white font-semibold mb-4">Stay Updated</h3>
           <p className="text-sm mb-3">Subscribe for updates and exclusive deals.</p>
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Section */}
+  
       <div className="text-center border-t border-gray-700 mt-10 pt-6 text-sm">
         © {new Date().getFullYear()} OKWUTECH. All rights reserved.
       </div>
