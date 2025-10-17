@@ -1,10 +1,14 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { ShoppingBag, Star, Mail } from "lucide-react";
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Star, ShoppingBag, Mail } from 'lucide-react'
 
-export default function Home() {
+
+
+
+function App() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
+       
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-16 bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
         <div className="md:w-1/2 space-y-6">
@@ -14,7 +18,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-4xl md:text-5xl font-extrabold leading-tight"
           >
-            Welcome to <span className="text-yellow-300">ShopEase</span>
+            Welcome to <span className="text-yellow-300">Okwutech</span>
             <br />
             Your One-Stop Online Store
           </motion.h1>
@@ -36,6 +40,7 @@ export default function Home() {
           className="md:w-1/2 rounded-2xl shadow-lg mt-10 md:mt-0"
         />
       </section>
+    
 
       {/* Categories Section */}
       <section className="py-16 px-6 md:px-16">
@@ -160,4 +165,7 @@ export default function Home() {
     </div>
   ); 
 }
-export { Home };
+  
+
+
+export default App;
